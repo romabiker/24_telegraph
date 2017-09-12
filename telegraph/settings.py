@@ -1,5 +1,6 @@
 import os
 import logging
+import tempfile
 
 
 project_name = "Telegraph"
@@ -11,8 +12,8 @@ class BaseConfig(object):
     SECRET_KEY = os.environ.get('TELEGRAPH_SECRET', 'secret-key')
     APP_DIR = os.path.abspath(os.path.dirname(__file__))  # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
-    TELEGRAMS_DIR = 'telegrams_storage'
-    TELEGRAMS_PATH = os.path.join(APP_DIR, TELEGRAMS_DIR)
+    SYSTEM_TEMP = tempfile.gettempdir()
+    TELEGRAMS_PATH = SYSTEM_TEMP
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     JSON_AS_ASCII = False,

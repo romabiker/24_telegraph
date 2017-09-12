@@ -1,11 +1,11 @@
+import random
 
 
 def get_random_string(length=12,
                       allowed_chars='abcdefghijklmnopqrstuvwxyz'
                                     'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'):
-    import random
-    random = random.SystemRandom()
-    return ''.join(random.choice(allowed_chars) for i in range(length))
+    sys_random = random.SystemRandom()
+    return ''.join(sys_random.choice(allowed_chars) for i in range(length))
 
 
 def get_secret_key():
