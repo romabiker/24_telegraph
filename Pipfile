@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+flake8 = "==3.4.1"
+flask = "==0.12.2"
+flask-debugtoolbar = "==0.10.1"
+flask-wtf = "==0.14.2"
+isort = "==4.2.15"
+python-slugify = "==1.2.4"
+gunicorn = "*"

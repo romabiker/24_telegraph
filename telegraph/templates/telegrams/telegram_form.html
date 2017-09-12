@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+
+    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+
+
+      <form method="POST">
+
+            {{ form.csrf_token }}
+
+            <div class="form-group">
+                   {% for error in form.title.errors %}
+                            {{ error }}
+                    {% endfor %}
+                {{ form.title(size=40, placeholder="Title", class_="form-control") }}
+            </div>
+
+            <div class="form-group">
+                  {% for error in form.signature.errors %}
+                            {{ error }}
+                    {% endfor %}
+                  {{ form.signature(size=40, placeholder="Signature", class_="form-control") }}
+            </div>
+
+            <div class="form-group">
+               {% for error in form.telegram.errors %}
+                        {{ error }}
+                    {% endfor %}
+              {{ form.telegram(rows=5, cols=40,  placeholder="Telegram", class_="form-control") }}
+            </div>
+
+           {#  <div class="form-group">
+            {% for error in form.recaptcha.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    {{ form.recaptcha(class_="form-control") }}
+            </div> #}
+
+            <div class="form-group">
+              {{ form.submit(class_="form-control") }}
+            </div>
+
+          </form>
+
+    </div>
+    {% endblock content %}
+
