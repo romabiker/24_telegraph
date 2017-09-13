@@ -11,31 +11,25 @@
 
             <div class="form-group">
                    {% for error in form.title.errors %}
-                            {{ error }}
-                    {% endfor %}
+                      <p class="text-warning">{{ error }}</p>
+                  {% endfor %}
                 {{ form.title(size=40, placeholder="Title", class_="form-control") }}
+            </div>
+
+
+            <div class="form-group">
+               {% for error in form.telegram.errors %}
+                  <p class="text-warning">{{ error }}</p>
+              {% endfor %}
+              {{ form.telegram(rows=5, cols=40,  placeholder="Telegram", class_="form-control") }}
             </div>
 
             <div class="form-group">
                   {% for error in form.signature.errors %}
-                            {{ error }}
-                    {% endfor %}
+                      <p class="text-warning">{{ error }}</p>
+                  {% endfor %}
                   {{ form.signature(size=40, placeholder="Signature", class_="form-control") }}
             </div>
-
-            <div class="form-group">
-               {% for error in form.telegram.errors %}
-                        {{ error }}
-                    {% endfor %}
-              {{ form.telegram(rows=5, cols=40,  placeholder="Telegram", class_="form-control") }}
-            </div>
-
-           {#  <div class="form-group">
-            {% for error in form.recaptcha.errors %}
-                        {{ error }}
-                    {% endfor %}
-                    {{ form.recaptcha(class_="form-control") }}
-            </div> #}
 
             <div class="form-group">
               {{ form.submit(class_="form-control") }}
