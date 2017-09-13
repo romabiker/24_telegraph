@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from telegraph import commands
 from telegraph.extensions import csrf_protect, debug_toolbar
 from telegraph.settings import ProdConfig
-from .telegrams.views import telegrams_blueprint
+from telegraph.telegrams.views import telegrams_blueprint
 
 
 def create_app(config_object=ProdConfig):
@@ -47,4 +47,5 @@ def register_errorhandlers(app):
 def register_commands(app):
     app.cli.add_command(commands.lint)
     app.cli.add_command(commands.clean)
+    app.cli.add_command(commands.key)
     app.cli.add_command(commands.urls)

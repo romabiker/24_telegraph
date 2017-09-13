@@ -10,6 +10,9 @@ from flask.cli import with_appcontext
 from werkzeug.exceptions import MethodNotAllowed, NotFound
 
 
+from telegraph.utils import get_secret_key
+
+
 HERE = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.join(HERE, os.pardir)
 TEST_PATH = os.path.join(PROJECT_ROOT, 'tests')
@@ -52,6 +55,15 @@ def clean():
                 full_pathname = os.path.join(dirpath, filename)
                 click.echo('Removing {}'.format(full_pathname))
                 os.remove(full_pathname)
+
+
+@click.command()
+def key():
+    """
+    Generate system random sequence.
+
+    """
+    click.echo('New generated key:{}'.format(get_secret_key()))
 
 
 @click.command()
