@@ -14,8 +14,8 @@ Run the following commands to install project locally for developing:
 ```
     git clone https://github.com/romabiker/24_telegraph.git
     cd 24_telegraph
-    pipenv install #automaticaly installs all dependacies from Pipfile
     pipenv shell   # activates virtual environment
+    pipenv install #automaticaly installs all dependacies from Pipfile
     pipenv graph   # shows all installed dependancies
     export FLASK_APP=autoapp.py
     flask key
