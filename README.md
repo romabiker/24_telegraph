@@ -14,7 +14,9 @@ Run the following commands to install project locally for developing:
 ```
     git clone https://github.com/romabiker/24_telegraph.git
     cd 24_telegraph
-    pipenv shell #automaticaly installs all dependacies from Pipfile and activates virtual environment
+    pipenv install #automaticaly installs all dependacies from Pipfile
+    pipenv shell   # activates virtual environment
+    pipenv graph   # shows all installed dependancies
     export FLASK_APP=autoapp.py
     flask key
     export TELEGRAPH_SECRET="paste from cli generated flask key"
@@ -37,10 +39,8 @@ Managment commands
 ------------------
 
 ```
-    flask lint    # Lint and check code style with flake8 and isort.
     flask clean   # Remove *.pyc and *.pyo files recursively starting at current directory.
     flask key     # Generate secret key
-    flask urls    # Display all of the url matching routes for the project.
 ```
 
 Deployment
@@ -54,15 +54,17 @@ Register on Heroku
 
 [Download and install Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
 
+Run the following commands:
 
 ```
     Heroku login
     git clone https://github.com/romabiker/24_telegraph.git
     cd 24_telegraph
     heroku create # creates application
-    pipenv shell # install all dependacies and activates virtual environment locally
+    pipenv install #automaticaly installs all dependacies from Pipfile
+    pipenv shell   # activates virtual environment
     heroku local web  # to check server locally
-    git push heroku master  # deploy and after that visit dashboard settings on Heroku and provide TELEGRAPH_SECRET
+    git push heroku master  # deploy and after that visit dashboard settings on Heroku to provide TELEGRAPH_SECRET
     heroku ps:scale web=1 # runs project
     heroku open   # opens in browser
     heroku logs --tail # to see logging

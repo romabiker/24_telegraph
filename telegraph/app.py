@@ -33,10 +33,7 @@ def register_extensions(app):
 
 
 def register_errorhandlers(app):
-    """Register error handlers."""
     def render_error(error):
-        """Render error template."""
-        # If a HTTPException, pull the `code` attribute; default to 500
         error_code = getattr(error, 'code', 500)
         return render_template('{0}.html'.format(error_code)), error_code
     for errcode in [401, 404, 500]:
@@ -45,7 +42,5 @@ def register_errorhandlers(app):
 
 
 def register_commands(app):
-    app.cli.add_command(commands.lint)
     app.cli.add_command(commands.clean)
     app.cli.add_command(commands.key)
-    app.cli.add_command(commands.urls)
