@@ -37,6 +37,10 @@ def make_slug_from(date, title):
                                              save_order=True)]))
 
 
+def check_in(telegram_dict):
+    return telegram_dict['owner_key'] == session.get('owner_key')
+
+
 def load_from_file_storage(slug):
     filename = safe_join(app.config['TELEGRAMS_PATH'], slug)
     with open(filename, 'r') as file_handler:
@@ -90,7 +94,7 @@ def create(form=None):
 @telegrams_blueprint.route('/<path:slug>', methods=['GET'])
 def deliver(slug):
     telegram_dict = load_from_file_storage_or_404(slug)
-    is_owner = telegram_dict['owner_key'] == session.get('owner_key')
+    is_owner =  check_in(telegram_dict)
     return render_template('telegram.html',
                            telegram_dict=telegram_dict,
                            is_owner=is_owner,)
@@ -101,7 +105,7 @@ def update(slug, form=None):
     if form is None:
         form = TelegramForm()
     telegram_dict = load_from_file_storage_or_404(slug)
-    is_owner = telegram_dict['owner_key'] == session.get('owner_key')
+    is_owner = check_in(telegram_dict)
     if not is_owner:
         abort(401)
     if form.validate_on_submit():
