@@ -1,4 +1,5 @@
 from datetime import date
+import os
 
 
 from flask import (
@@ -15,11 +16,11 @@ from flask import (
 from werkzeug import secure_filename
 
 
-from slugify import slugify
+from slugify import slugify  # it can convert russian title into inglish slug
 
 
 from .forms import TelegramForm
-from telegraph.utils import get_secret_key
+from telegraph.utils import get_secret_key, get_random_string
 
 
 telegrams_blueprint = Blueprint(
@@ -28,13 +29,18 @@ telegrams_blueprint = Blueprint(
 )
 
 
-def make_slug_from(date, title):
-    return secure_filename('-'.join([str(date.month),
-                                     str(date.day),
-                                     slugify(title,
-                                             max_length=30,
-                                             word_boundary=True,
-                                             save_order=True)]))
+def make_slug_from(date, title, slug=None):
+    if not slug:
+        slug = secure_filename('-'.join([str(date.month),
+                                         str(date.day),
+                                         slugify(title,
+                                                 max_length=30,
+                                                 word_boundary=True,
+                                                 save_order=True)]))
+    if not os.path.exists(safe_join(app.config['TELEGRAMS_PATH'], slug)):
+        return slug
+    slug = '{}-{}'.format(slug, get_random_string(length=5))
+    return make_slug_from(date, title, slug)
 
 
 def check_in(telegram_dict):

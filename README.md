@@ -61,8 +61,8 @@ Run the following commands:
     git clone https://github.com/romabiker/24_telegraph.git
     cd 24_telegraph
     heroku create # creates application
-    pipenv install #automaticaly installs all dependacies from Pipfile
     pipenv shell   # activates virtual environment
+    pipenv install #automaticaly installs all dependacies from Pipfile
     heroku local web  # to check server locally
     git push heroku master  # deploy and after that visit dashboard settings on Heroku to provide TELEGRAPH_SECRET
     heroku ps:scale web=1 # runs project
